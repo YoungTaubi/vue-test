@@ -1,10 +1,5 @@
 <template>
   <h1>Rick and Morty</h1>
-  <h3>{{ rickAndMortyCharacter }}</h3>
-  <input type="text" v-model="test" />
-  <h3>{{ test }}</h3>
-  <button @click="getRickAndMortyCharacter">Test</button>
-  <button @click="changeCharakter">Change</button>
   <CharacterList />
 </template>
 

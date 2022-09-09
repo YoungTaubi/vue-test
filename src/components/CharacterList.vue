@@ -1,9 +1,12 @@
 <template>
-  <h1>Character List</h1>
-  <div v-for="character in characters" :key="character?.id">
-    <CharacterCard v-if="characters.length" :character="character" />
-    <!-- <h1>{{character.name}}</h1> -->
+  <h2>Character List</h2>
+  <div v-if="characters.length">
+    <div v-for="character in characters" :key="character?.id">
+      <CharacterCard v-if="characters.length" :character="character" />
+    </div>
   </div>
+  <h3>{{ testValue }}</h3>
+  <button @click="setTestValue">Change Value</button>
 </template>
 
 <script>
@@ -11,18 +14,21 @@ import CharacterCard from "./CharacterCard.vue";
 import getAllCharacters from "@/composables/getAllCharacters";
 
 export default {
+  components: { CharacterCard },
   setup() {
-    const { characters, error, load } = getAllCharacters();
+    const { characters, error, load, testValue, setTestValue } =
+      getAllCharacters();
 
     load();
 
-    if (characters.length < 0) {
-      console.log("in comp", characters.data?.result);
-    }
+    const logListAgain = () => {
+      console.log("list", characters);
+    };
+    console.log("list", characters);
+    setTimeout(logListAgain, 5000);
 
-    return { characters };
+    return { characters, testValue, setTestValue };
   },
-  components: { CharacterCard },
 };
 </script>
 
